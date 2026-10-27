@@ -80,7 +80,7 @@ export default function Pagina() {
                   </div>
 
                   {/* A faca atrás dele, cruzando a borda direita. */}
-                  <div className="camada-faca pointer-events-none absolute -top-[6%] -right-[20%] h-[72%] w-[86%]">
+                  <div className="camada-faca pointer-events-none absolute -top-[13%] -right-[14%] h-[72%] w-[86%] md:-right-[24%]">
                     <Image
                       src={FACA.imagem}
                       alt={`${FACA.arma} | ${FACA.skin}`}
