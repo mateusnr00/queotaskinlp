@@ -25,6 +25,18 @@ describe("landing do grupo", () => {
     }
   });
 
+  // O anúncio não pode falar de sorteio: a página vende a comunidade.
+  // Remove os comentários antes de procurar.
+  it("não fala de sorteio, rifa ou prêmio no texto da página", () => {
+    const proibidas = /\b(sorteios?|sortear|rifas?|pr[eê]mios?|ganhador(es)?|ganhou|ganhe)\b/i;
+    for (const f of fontes) {
+      const codigo = readFileSync(f, "utf8")
+        .replace(/\/\*[\s\S]*?\*\//g, "")
+        .replace(/^\s*\/\/.*$/gm, "");
+      expect(codigo, f).not.toMatch(proibidas);
+    }
+  });
+
   it("não usa travessão em lugar nenhum", () => {
     for (const f of fontes) {
       expect(readFileSync(f, "utf8"), f).not.toMatch(/[—–]/);

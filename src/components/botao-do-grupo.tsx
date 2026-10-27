@@ -34,10 +34,16 @@ export function BotaoDoGrupo({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => registrarCliqueNoGrupo(origem)}
-      className={`botao-de-whatsapp botao-do-grupo inline-flex items-center justify-center whitespace-nowrap select-none ${TAMANHO[tamanho]} ${largo ? "w-full" : ""} ${className}`}
+      className={`botao-de-whatsapp botao-do-grupo relative inline-flex select-none ${largo ? "w-full" : ""} ${className}`}
     >
-      <RiWhatsappFill aria-hidden className="size-[1.25em] shrink-0" />
-      Entrar no grupo
+      {/* A face chanfrada fica num span: o clip-path no próprio <a> cortaria
+          o brilho e o pulso, que moram nele. */}
+      <span
+        className={`botao-face relative inline-flex items-center justify-center whitespace-nowrap ${TAMANHO[tamanho]} ${largo ? "w-full" : ""}`}
+      >
+        <RiWhatsappFill aria-hidden className="size-[1.25em] shrink-0" />
+        Entrar no grupo
+      </span>
     </a>
   );
 }

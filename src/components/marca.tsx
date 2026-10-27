@@ -1,13 +1,17 @@
-// Wordmark tipográfico, o mesmo da welcome/. Grafia sempre "QUÉOTA SKIN".
+import Image from "next/image";
 
-export function Marca({ className = "" }: { className?: string }) {
+// A logo oficial da QUÉOTA SKIN (letras prateadas, mira vermelha no O).
+// A arte é larga (900x241); quem usa define só a altura pela className.
+
+export function Marca({ className = "", prioridade = false }: { className?: string; prioridade?: boolean }) {
   return (
-    <span
-      aria-label="QUÉOTA SKIN"
-      className={`inline-flex items-baseline gap-1.5 font-black tracking-tight uppercase italic select-none ${className}`}
-    >
-      <span aria-hidden className="text-paper">QUÉOTA</span>
-      <span aria-hidden className="text-red">SKIN</span>
-    </span>
+    <Image
+      src="/arte/logo-queota-skin.webp"
+      alt="QUÉOTA SKIN"
+      width={900}
+      height={241}
+      priority={prioridade}
+      className={`w-auto select-none ${className}`}
+    />
   );
 }

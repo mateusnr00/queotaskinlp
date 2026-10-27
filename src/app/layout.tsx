@@ -23,9 +23,9 @@ const barlow = Barlow_Condensed({
   display: "swap",
 });
 
-const titulo = "Lobby do FNX · Sorteios de skins de CS2 no WhatsApp";
+const titulo = "Lobby do FNX · Comunidade de CS2 no WhatsApp";
 const descricao =
-  "O grupo da comunidade do FNX no WhatsApp: cada sorteio de skin de CS2 chega lá primeiro. Grátis.";
+  "O grupo da comunidade de CS2 do FNX no WhatsApp. Skin, live e resenha num grupo só. Entrar é de graça.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(URL_DO_SITE),

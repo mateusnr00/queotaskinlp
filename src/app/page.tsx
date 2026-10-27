@@ -13,13 +13,13 @@ import { SKINS } from "@/lib/skins";
 
 const FACA = SKINS[0];
 
-const NO_GRUPO = ["Sorteio novo.", "Link da live.", "Quem ganhou."];
+const NO_GRUPO = ["Skin rara.", "Live do FNX.", "Resenha de CS."];
 
 export default function Pagina() {
   return (
     <>
       <header className="wrap relative z-20 flex h-16 items-center justify-between">
-        <Marca className="text-lg" />
+        <Marca prioridade className="h-9 md:h-11" />
         {/* No celular o botão do hero já está na dobra: o do topo só repetiria. */}
         <div className="hidden sm:block">
           <BotaoDoGrupo origem="topo" tamanho="pequeno" />
@@ -29,9 +29,9 @@ export default function Pagina() {
       <main>
         {/* PARTIDA ENCONTRADA */}
         <section className="relative overflow-hidden">
-          {/* Brilho vermelho atrás do card. */}
+          {/* Degradê do hero: vermelho subindo do canto do card até o preto. */}
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <div className="absolute top-[10%] right-[-15%] h-[620px] w-[760px] rounded-full bg-[radial-gradient(closest-side,rgba(255,59,48,0.28),transparent)] blur-2xl" />
+            <div className="absolute inset-0 bg-[radial-gradient(70%_80%_at_85%_60%,rgba(255,59,48,0.32),transparent_70%),linear-gradient(180deg,transparent_60%,var(--color-ink))]" />
           </div>
 
           <div className="wrap relative grid items-center gap-6 pt-6 pb-24 md:grid-cols-[1fr_1.1fr] md:gap-4 md:pt-10 md:pb-32">
@@ -51,8 +51,8 @@ export default function Pagina() {
                 className="entra mt-6 max-w-sm text-lg leading-relaxed text-mute"
                 style={{ "--atraso": "160ms" } as React.CSSProperties}
               >
-                Todo sorteio de skin de CS2 cai primeiro no grupo do WhatsApp.
-                Entrar é de graça.
+                A comunidade de CS2 do FNX no WhatsApp. Skin, live e resenha num
+                grupo só. Entrar é de graça.
               </p>
               <div
                 id="cta-hero"
@@ -67,16 +67,9 @@ export default function Pagina() {
             <div className="relative mx-auto mt-24 w-full max-w-[560px] md:mt-24 md:justify-self-end">
               <Cartao3D>
                 <div className="relative aspect-[5/4]">
-                  <div className="camada-fundo absolute inset-0 overflow-hidden rounded-[30px] border border-red/40 shadow-[0_40px_80px_-30px_rgba(255,59,48,0.55)]">
-                    <Image
-                      src="/arte/fundo-vermelho.webp"
-                      alt=""
-                      fill
-                      priority
-                      sizes="(min-width: 768px) 560px, 92vw"
-                      className="object-cover opacity-70"
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(7,8,9,0.15)_10%,rgba(7,8,9,0.85)_75%)]" />
+                  <div className="camada-fundo absolute inset-0 overflow-hidden rounded-[30px] border border-red/40 bg-[radial-gradient(120%_90%_at_30%_100%,#ff3b30_0%,#b3140c_35%,#3a0805_70%,#120405_100%)] shadow-[0_40px_80px_-30px_rgba(255,59,48,0.6)]">
+                    {/* Luz de cima, para o card não ficar chapado. */}
+                    <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_80%_0%,rgba(255,255,255,0.14),transparent_60%)]" />
                     <Image
                       src="/mapas/mirage.webp"
                       alt=""
@@ -117,10 +110,10 @@ export default function Pagina() {
           </div>
         </section>
 
-        {/* CHEGA PRIMEIRO: faixa vermelha inclinada, tipografia como imagem. */}
-        <section aria-label="O que chega no grupo" className="faixa bg-red py-14 md:py-20">
+        {/* NO GRUPO: faixa vermelha inclinada, tipografia como imagem. */}
+        <section aria-label="O que rola no grupo" className="faixa bg-red py-14 md:py-20">
           <div className="wrap">
-            <p className="rotulo-hud text-ink/70">No grupo chega primeiro</p>
+            <p className="rotulo-hud text-ink/70">No grupo rola</p>
             <ul className="mt-3 flex flex-col gap-1 md:flex-row md:flex-wrap md:gap-x-8">
               {NO_GRUPO.map((t, i) => (
                 <li
@@ -180,7 +173,7 @@ export default function Pagina() {
 
       <footer className="border-t border-line pb-28 md:pb-0">
         <div className="wrap flex flex-col gap-2 py-8 text-xs text-mute-2 sm:flex-row sm:items-center sm:justify-between">
-          <Marca className="text-sm" />
+          <Marca className="h-7" />
           <p>Não afiliado à Valve. Counter-Strike é marca da Valve Corporation.</p>
         </div>
       </footer>

@@ -1,6 +1,7 @@
 # QUÉOTA SKIN, landing do grupo do WhatsApp (`queotaskin.vip`)
 
-Página de anúncio com um objetivo só: levar a pessoa para o grupo do WhatsApp.
+Página de anúncio com um objetivo só: levar a pessoa para o grupo do WhatsApp
+da comunidade do FNX. A copy não fala de sorteio (um teste barra).
 É um projeto à parte, desligado do app principal (`mateusnr00/queotaskin`):
 sem banco, sem login e sem nenhum link para o queotaskin.com. Um teste garante
 isso.

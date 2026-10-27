@@ -106,8 +106,17 @@ body::after {
 }
 
 /* O botão de aceitar: verde do WhatsApp, texto escuro (contraste AA),
-   chanfro nos cantos como os botões da HUD do jogo. */
+   chanfro nos cantos como os botões da HUD do jogo. O <a> carrega o brilho
+   e o pulso; a face chanfrada é o span de dentro. */
 .botao-do-grupo {
+  isolation: isolate;
+  filter: drop-shadow(0 12px 28px rgba(37, 211, 102, 0.35));
+}
+.botao-face,
+.botao-do-grupo::before {
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+.botao-face {
   font-family: var(--font-hud);
   font-weight: 900;
   font-style: italic;
@@ -115,8 +124,28 @@ body::after {
   text-transform: uppercase;
   background: var(--color-zap);
   color: var(--color-zap-ink);
-  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
-  filter: drop-shadow(0 12px 28px rgba(37, 211, 102, 0.35));
+}
+/* Pulso: uma cópia da face que cresce e some atrás do botão, sem parar.
+   Roda mesmo com "reduzir movimento" ligado: foi pedido e é o chamariz da
+   página, como a esteira (no Windows essa opção vem ligada em muita máquina). */
+.botao-do-grupo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-zap);
+  animation: pulso 1.8s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+@keyframes pulso {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  80%,
+  100% {
+    transform: scale(1.18, 1.45);
+    opacity: 0;
+  }
 }
 .botao-do-grupo:focus-visible {
   outline: 3px solid var(--color-paper);
