@@ -27,8 +27,18 @@ Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `test`.
 | --- | --- |
 | `NEXT_PUBLIC_WHATSAPP_GROUP_URL` | Convite do grupo. Vazio usa o grupo padrão de `src/lib/links.ts`. |
 | `NEXT_PUBLIC_SITE_URL` | URL desta landing, para canonical e Open Graph. Vazio usa `https://www.queotaskin.vip`. |
-| `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel. O clique no botão vira evento `Lead`. |
+| `NEXT_PUBLIC_META_PIXEL_ID` | Pixel da Meta. Vazio usa o `2850933681947315` (`src/lib/meta.ts`). |
+| `META_CAPI_TOKEN` | **Secreto**, só no servidor (variável `sensitive` da Vercel, Production). Token da API de Conversões. Sem ele, só o Pixel do navegador funciona. |
+| `META_TEST_EVENT_CODE` | Opcional. Código de "Testar eventos" do Gerenciador de Eventos, para ver os eventos do servidor chegando. Tire depois. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics. O clique vira `whatsapp_click`. |
+
+## Rastreio da Meta
+
+Dois eventos: `PageView` (visita) e `Lead` (clique em Entrar no grupo). Cada
+um sai pelo Pixel no navegador e pela API de Conversões (`POST /api/evento`,
+que repassa à Meta com o token), com o mesmo `event_id` para a Meta
+deduplicar. O servidor manda IP, user agent, `fbp`, `fbc` (cookie ou montado
+do `fbclid`) e `external_id` (id anônimo do cookie `qs_eid`, em SHA-256).
 
 Cada clique leva a origem (`hero`, `topo`, `final`, `fixo`) para dar para ver
 qual botão converte.
