@@ -76,13 +76,6 @@ export function PopupDeEntrada() {
           </button>
         </div>
         <BotaoDoGrupo origem="popup" largo className="max-w-[min(100%,372px)]" />
-        <button
-          type="button"
-          onClick={fechar}
-          className="text-sm font-semibold text-mute underline-offset-4 hover:text-paper hover:underline"
-        >
-          Ver o site
-        </button>
       </div>
     </dialog>
   );
