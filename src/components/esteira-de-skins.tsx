@@ -15,8 +15,6 @@ import { useSyncExternalStore } from "react";
 import Image from "next/image";
 import { COR_DA_RARIDADE, type SkinDaVitrine } from "@/lib/skins";
 
-const MAPAS = ["/mapas/dust2.webp", "/mapas/mirage.webp", "/mapas/inferno.webp", "/mapas/cache.webp"];
-
 function embaralhar<T>(lista: T[]): T[] {
   const copia = [...lista];
   for (let i = copia.length - 1; i > 0; i--) {
@@ -50,42 +48,34 @@ export function EsteiraDeSkins({ skins }: { skins: SkinDaVitrine[] }) {
   // Duas voltas da mesma lista: a animação anda -50% e emenda sem pulo.
   const voltas = [...ordem, ...ordem];
 
-  // pt-24: respiro para a skin que sai pelo topo do card não ser cortada
-  // pelo overflow horizontal do trilho.
+  // pt-3: só o respiro do card subindo no hover.
   return (
-    <div className="overflow-hidden pt-24 pb-4 pl-4">
+    <div className="overflow-hidden pt-3 pb-4 pl-4">
       <ul className="esteira flex w-max">
         {voltas.map((s, i) => (
           <li
             key={`${s.arma}-${s.skin}-${i}`}
             aria-hidden={i >= ordem.length}
-            className="w-60 shrink-0 pr-5 md:w-72"
+            className="w-52 shrink-0 pr-4 md:w-60"
           >
             <div
-              className="card-skin relative h-52 rounded-[22px] md:h-60"
+              className="card-skin relative overflow-hidden rounded-[20px]"
               style={{ "--raridade": COR_DA_RARIDADE[s.raridade] } as React.CSSProperties}
             >
-              {/* Brasão do mapa, apagado no canto: só textura de CS. */}
-              <Image
-                src={MAPAS[i % MAPAS.length]}
-                alt=""
-                width={140}
-                height={140}
-                className="pointer-events-none absolute right-3 bottom-3 size-24 opacity-[0.13] grayscale md:size-28"
-              />
-              <div className="skin-pop pointer-events-none absolute -inset-x-[8%] -top-[38%] h-[90%]">
+              {/* A arte inteira, reta e centrada: object-contain, sem corte. */}
+              <div className="skin-pop relative mx-auto h-32 w-[86%] md:h-36">
                 <Image
                   src={s.imagem}
                   alt={`${s.arma} | ${s.skin}`}
                   fill
-                  sizes="320px"
-                  className="-rotate-12 object-contain drop-shadow-[0_22px_24px_rgba(0,0,0,0.75)]"
+                  sizes="220px"
+                  className="object-contain drop-shadow-[0_14px_14px_rgba(0,0,0,0.6)]"
                 />
               </div>
-              <div className="absolute inset-x-5 bottom-4">
-                <p className="hud text-[1.7rem] leading-none not-italic">{s.arma.replace("★ ", "")}</p>
+              <div className="border-t border-white/5 px-4 pt-3 pb-4">
+                <p className="hud truncate text-xl leading-none not-italic">{s.arma.replace("★ ", "")}</p>
                 <p
-                  className="mt-1 text-sm font-semibold"
+                  className="mt-1 truncate text-[0.8rem] font-semibold"
                   style={{ color: COR_DA_RARIDADE[s.raridade] }}
                 >
                   {s.skin}

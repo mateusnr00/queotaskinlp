@@ -134,7 +134,7 @@ export default function Pagina() {
             <br />
             <span className="vazado">Tem de tudo.</span>
           </h2>
-          <div className="mt-4">
+          <div className="mt-8 md:mt-10">
             <EsteiraDeSkins skins={SKINS} />
           </div>
         </section>
