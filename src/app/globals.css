@@ -120,11 +120,15 @@ body {
   pointer-events: auto;
 }
 
-/* Esteira de skins: a única animação contínua da página, mostra a variedade. */
+/* Esteira de skins: a única animação contínua da página, mostra a variedade.
+   Roda sempre, de propósito fora do bloco de menos movimento (ver
+   esteira-de-skins.tsx). Mouse ou dedo em cima pausa. */
 .esteira {
-  animation: esteira 48s linear infinite;
+  animation: esteira 40s linear infinite;
+  will-change: transform;
 }
-.esteira:hover {
+.esteira:hover,
+.esteira:active {
   animation-play-state: paused;
 }
 @keyframes esteira {
@@ -156,12 +160,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .esteira {
-    animation: none;
-  }
-  .esteira-trilho {
-    overflow-x: auto;
-  }
   .botao-fixo,
   .botao-de-whatsapp {
     transition: none;

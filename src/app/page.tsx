@@ -7,8 +7,9 @@ import {
 import { ArteDaSkin } from "@/components/arte-da-skin";
 import { BotaoDoGrupo } from "@/components/botao-do-grupo";
 import { BotaoFixoMobile } from "@/components/botao-fixo-mobile";
+import { EsteiraDeSkins } from "@/components/esteira-de-skins";
 import { Marca } from "@/components/marca";
-import { COR_DA_RARIDADE, SKINS } from "@/lib/skins";
+import { SKINS } from "@/lib/skins";
 
 // Uma página, um objetivo: entrar no grupo do WhatsApp. Sem menu, sem link
 // para o site, sem segundo caminho. Quem chega do anúncio só tem uma porta.
@@ -112,32 +113,12 @@ export default function Pagina() {
           </div>
         </section>
 
-        {/* ESTEIRA: a variedade de skins que roda nos sorteios. */}
+        {/* ESTEIRA: carrossel automático, ordem aleatória a cada visita. */}
         <section aria-label="Skins que já rodaram nos sorteios" className="pb-20 md:pb-28">
           <p className="wrap mb-6 text-sm font-semibold text-mute">
             Faca, luva, AK, AWP. Tem de tudo nos sorteios.
           </p>
-          <div className="esteira-trilho overflow-hidden">
-            <ul className="esteira flex w-max gap-4 pl-4">
-              {[...SKINS, ...SKINS].map((s, i) => (
-                <li
-                  key={`${s.arma}-${s.skin}-${i}`}
-                  aria-hidden={i >= SKINS.length}
-                  className="w-52 shrink-0 md:w-60"
-                >
-                  <ArteDaSkin
-                    skin={s}
-                    tamanhos="240px"
-                    className="aspect-[4/3] w-full"
-                  />
-                  <p className="mt-2 truncate text-sm font-semibold">
-                    {s.arma}{" "}
-                    <span style={{ color: COR_DA_RARIDADE[s.raridade] }}>| {s.skin}</span>
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <EsteiraDeSkins skins={SKINS} />
         </section>
 
         {/* CHAMADA FINAL */}
