@@ -1,4 +1,4 @@
-# QUÉOTA SKIN, landing do grupo do WhatsApp
+# QUÉOTA SKIN, landing do grupo do WhatsApp (`queotaskin.vip`)
 
 Página de anúncio com um objetivo só: levar a pessoa para o grupo do WhatsApp.
 É um projeto à parte, desligado do app principal (`mateusnr00/queotaskin`):
@@ -25,7 +25,7 @@ Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `test`.
 | Variável | Para quê |
 | --- | --- |
 | `NEXT_PUBLIC_WHATSAPP_GROUP_URL` | Convite do grupo. Vazio usa o grupo padrão de `src/lib/links.ts`. |
-| `NEXT_PUBLIC_SITE_URL` | URL desta landing, para canonical e Open Graph. |
+| `NEXT_PUBLIC_SITE_URL` | URL desta landing, para canonical e Open Graph. Vazio usa `https://queotaskin.vip`. |
 | `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel. O clique no botão vira evento `Lead`. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics. O clique vira `whatsapp_click`. |
 
@@ -35,5 +35,6 @@ qual botão converte.
 ## Deploy
 
 Projeto novo na Vercel apontando para este repo, framework Next.js, sem
-configuração extra. Para trocar de grupo quando lotar, mude
+configuração extra. Domínio: `queotaskin.vip` (em Settings > Domains do projeto,
+com `www.queotaskin.vip` redirecionando para ele). Para trocar de grupo quando lotar, mude
 `NEXT_PUBLIC_WHATSAPP_GROUP_URL` e faça redeploy.
