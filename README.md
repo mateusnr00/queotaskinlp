@@ -25,7 +25,7 @@ Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `test`.
 | Variável | Para quê |
 | --- | --- |
 | `NEXT_PUBLIC_WHATSAPP_GROUP_URL` | Convite do grupo. Vazio usa o grupo padrão de `src/lib/links.ts`. |
-| `NEXT_PUBLIC_SITE_URL` | URL desta landing, para canonical e Open Graph. Vazio usa `https://queotaskin.vip`. |
+| `NEXT_PUBLIC_SITE_URL` | URL desta landing, para canonical e Open Graph. Vazio usa `https://www.queotaskin.vip`. |
 | `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel. O clique no botão vira evento `Lead`. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics. O clique vira `whatsapp_click`. |
 
@@ -35,6 +35,6 @@ qual botão converte.
 ## Deploy
 
 Projeto novo na Vercel apontando para este repo, framework Next.js, sem
-configuração extra. Domínio: `queotaskin.vip` (em Settings > Domains do projeto,
-com `www.queotaskin.vip` redirecionando para ele). Para trocar de grupo quando lotar, mude
+configuração extra. Projeto `queotaskinlp` na Vercel. Domínios: `www.queotaskin.vip` serve a
+página e `queotaskin.vip` redireciona (308) para ele. Branch de produção: `main`. Para trocar de grupo quando lotar, mude
 `NEXT_PUBLIC_WHATSAPP_GROUP_URL` e faça redeploy.

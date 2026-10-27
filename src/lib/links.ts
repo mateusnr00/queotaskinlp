@@ -11,7 +11,7 @@ export const LINK_DO_GRUPO =
   process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL ||
   "https://chat.whatsapp.com/EtgVyfUofoCExqFOHtROVC";
 
-/** URL desta landing (queotaskin.vip), para canonical e Open Graph. */
+/** URL desta landing (www.queotaskin.vip, para onde o domínio raiz redireciona), para canonical e Open Graph. */
 export const URL_DO_SITE = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://queotaskin.vip"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.queotaskin.vip"
 ).replace(/\/+$/, "");
