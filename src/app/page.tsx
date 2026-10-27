@@ -64,7 +64,7 @@ export default function Pagina() {
             </div>
 
             {/* O card: fundo dentro, faca e FNX saindo pela borda. */}
-            <div className="relative mx-auto mt-16 w-full max-w-[560px] md:mt-0 md:justify-self-end">
+            <div className="relative mx-auto mt-24 w-full max-w-[560px] md:mt-24 md:justify-self-end">
               <Cartao3D>
                 <div className="relative aspect-[5/4]">
                   <div className="camada-fundo absolute inset-0 overflow-hidden rounded-[30px] border border-red/40 shadow-[0_40px_80px_-30px_rgba(255,59,48,0.55)]">
@@ -82,30 +82,33 @@ export default function Pagina() {
                       alt=""
                       width={180}
                       height={180}
-                      className="absolute top-5 left-5 size-16 opacity-80 md:size-20"
+                      className="absolute right-5 bottom-5 size-16 opacity-80 md:size-20"
                     />
                   </div>
 
-                  <div className="camada-faca pointer-events-none absolute -top-[30%] -right-[10%] h-[78%] w-[86%]">
+                  {/* A faca atrás dele, cruzando a borda direita. */}
+                  <div className="camada-faca pointer-events-none absolute -top-[14%] -right-[16%] h-[70%] w-[78%]">
                     <Image
                       src={FACA.imagem}
                       alt={`${FACA.arma} | ${FACA.skin}`}
                       fill
                       priority
-                      sizes="(min-width: 768px) 480px, 80vw"
+                      sizes="(min-width: 768px) 440px, 72vw"
                       className="object-contain drop-shadow-[0_30px_30px_rgba(0,0,0,0.7)]"
                     />
                   </div>
 
-                  <div className="camada-fnx pointer-events-none absolute -bottom-[17%] -left-[9%] w-[112%]">
+                  {/* O FNX de pé no card: o corte do peito encosta na base e a
+                      cabeça passa do topo. */}
+                  <div className="camada-fnx pointer-events-none absolute bottom-0 left-[4%] w-[68%]">
                     <Image
-                      src="/arte/fnx-3d.webp"
-                      alt="FNX deitado segurando o troféu do Major"
-                      width={1100}
-                      height={449}
+                      src="/arte/fnx-bracos-cruzados.webp"
+                      alt="FNX de braços cruzados"
+                      width={833}
+                      height={1242}
                       priority
-                      sizes="(min-width: 768px) 630px, 100vw"
-                      className="h-auto w-full drop-shadow-[0_24px_30px_rgba(0,0,0,0.65)]"
+                      sizes="(min-width: 768px) 380px, 64vw"
+                      className="h-auto w-full drop-shadow-[0_28px_36px_rgba(0,0,0,0.7)]"
                     />
                   </div>
                 </div>
@@ -132,7 +135,7 @@ export default function Pagina() {
         </section>
 
         {/* O QUE RODA: cards com a skin saindo pelo topo, em ordem aleatória. */}
-        <section className="pt-24 pb-16 md:pt-32 md:pb-24">
+        <section className="pt-24 pb-4 md:pt-32 md:pb-8">
           <h2 className="hud revela wrap text-[clamp(2.6rem,7vw,4.6rem)]">
             Faca, luva, AK, AWP.
             <br />
@@ -144,8 +147,19 @@ export default function Pagina() {
         </section>
 
         {/* ACEITAR */}
-        <section className="wrap pb-24 md:pb-32">
-          <div className="revela relative overflow-hidden rounded-[30px] border border-zap/30 bg-surface px-6 py-16 text-center md:py-24">
+        <section className="wrap revela relative pt-24 pb-24 md:pt-32 md:pb-32">
+          {/* O FNX do troféu deitado em cima do card, fora do recorte dele. */}
+          <div className="pointer-events-none absolute top-[calc(6rem-62px)] right-4 z-10 w-[260px] md:top-[calc(8rem-108px)] md:right-12 md:w-[440px]">
+            <Image
+              src="/arte/fnx-3d.webp"
+              alt="FNX deitado segurando o troféu do Major"
+              width={1100}
+              height={449}
+              sizes="(min-width: 768px) 440px, 260px"
+              className="h-auto w-full drop-shadow-[0_18px_24px_rgba(0,0,0,0.6)]"
+            />
+          </div>
+          <div className="relative overflow-hidden rounded-[30px] border border-zap/30 bg-surface px-6 py-16 text-center md:py-24">
             <div
               aria-hidden
               className="pointer-events-none absolute inset-x-0 -bottom-1/2 mx-auto h-full w-[80%] rounded-full bg-[radial-gradient(closest-side,rgba(37,211,102,0.2),transparent)] blur-2xl"
