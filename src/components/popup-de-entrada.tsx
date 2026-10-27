@@ -1,7 +1,8 @@
 "use client";
 
-// Pop-up de entrada: o banner do FNX com o botão do grupo embaixo e um X para
-// fechar e ver o site. Abre uma vez por sessão, logo que a página carrega.
+// Pop-up de entrada: o banner com o botão do grupo embaixo e um X para fechar
+// e ver o site. Abre uma vez por sessão (por arte: trocar a imagem mostra de
+// novo), logo que a página carrega. Liga e desliga em src/lib/popup.ts.
 //
 // É um <dialog> nativo: Esc fecha, o foco fica preso dentro dele e o leitor de
 // tela entende que é um modal, sem biblioteca. Clicar fora da arte também
@@ -15,31 +16,31 @@ import { BotaoDoGrupo } from "@/components/botao-do-grupo";
 
 const CHAVE = "popup-de-entrada-visto";
 
-function jaViu(): boolean {
+function jaViu(imagem: string): boolean {
   try {
-    return window.sessionStorage.getItem(CHAVE) === "1";
+    return window.sessionStorage.getItem(CHAVE) === imagem;
   } catch {
     return false;
   }
 }
 
-function marcarVisto(): void {
+function marcarVisto(imagem: string): void {
   try {
-    window.sessionStorage.setItem(CHAVE, "1");
+    window.sessionStorage.setItem(CHAVE, imagem);
   } catch {
     /* noop */
   }
 }
 
-export function PopupDeEntrada() {
+export function PopupDeEntrada({ imagem }: { imagem: string }) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const dialogo = ref.current;
-    if (!dialogo || jaViu()) return;
+    if (!dialogo || jaViu(imagem)) return;
     dialogo.showModal();
-    marcarVisto();
-  }, []);
+    marcarVisto(imagem);
+  }, [imagem]);
 
   function fechar() {
     ref.current?.close();
@@ -58,8 +59,8 @@ export function PopupDeEntrada() {
       <div className="flex flex-col items-center gap-4 px-4 py-4">
         <div className="relative">
           <Image
-            src="/arte/popup-fnx.webp"
-            alt="FNX de terno com a logo da QUÉOTA SKIN"
+            src={imagem}
+            alt="Banner da comunidade do FNX"
             width={760}
             height={1270}
             priority

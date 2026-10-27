@@ -30,6 +30,8 @@ Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `test`.
 | `NEXT_PUBLIC_META_PIXEL_ID` | Pixel da Meta. Vazio usa o `2850933681947315` (`src/lib/meta.ts`). |
 | `META_CAPI_TOKEN` | **Secreto**, só no servidor (variável `sensitive` da Vercel, Production). Token da API de Conversões. Sem ele, só o Pixel do navegador funciona. |
 | `META_TEST_EVENT_CODE` | Opcional. Código de "Testar eventos" do Gerenciador de Eventos, para ver os eventos do servidor chegando. Tire depois. |
+| `NEXT_PUBLIC_POPUP` | `1` mostra o pop-up de entrada; vazio esconde (padrão). Mudou, faça Redeploy. |
+| `NEXT_PUBLIC_POPUP_IMAGEM` | Opcional. URL de outra arte para o pop-up; vazio usa `public/arte/popup-fnx.webp`. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics. O clique vira `whatsapp_click`. |
 
 ## Rastreio da Meta

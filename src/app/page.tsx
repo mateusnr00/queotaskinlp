@@ -6,11 +6,12 @@ import { Cartao3D } from "@/components/cartao-3d";
 import { EsteiraDeSkins } from "@/components/esteira-de-skins";
 import { Marca } from "@/components/marca";
 import { PopupDeEntrada } from "@/components/popup-de-entrada";
+import { POPUP_ATIVO, POPUP_IMAGEM } from "@/lib/popup";
 import { SKINS } from "@/lib/skins";
 
 // LOBBY DO FNX. Uma porta só: o grupo do WhatsApp da comunidade do FNX. Sem
-// menu, sem link para o site, nenhum outro caminho. O pop-up de entrada leva
-// ao mesmo grupo.
+// menu, sem link para o site, nenhum outro caminho. O pop-up de entrada,
+// quando ligado na Vercel (src/lib/popup.ts), leva ao mesmo grupo.
 
 const FACA = SKINS[0];
 
@@ -183,7 +184,7 @@ export default function Pagina() {
       </footer>
 
       <BotaoFixoMobile alvo="cta-hero" />
-      <PopupDeEntrada />
+      {POPUP_ATIVO ? <PopupDeEntrada imagem={POPUP_IMAGEM} /> : null}
     </>
   );
 }
