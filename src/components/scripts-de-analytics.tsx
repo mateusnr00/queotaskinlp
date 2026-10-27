@@ -29,6 +29,18 @@ if(!m){document.cookie='${COOKIE_EXTERNAL_ID}='+id+'; Max-Age=31536000; Path=/; 
 fbq('init','${META_PIXEL_ID}',{external_id:id});})();`}
           </Script>
           <RastreioDaVisita />
+          {/* O <noscript> do código oficial do Pixel: conta a visita de quem
+              está com JavaScript desligado. */}
+          <noscript>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              alt=""
+              src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+            />
+          </noscript>
         </>
       ) : null}
 
