@@ -182,7 +182,7 @@ body::after {
   transform: translateZ(0);
 }
 .camada-faca {
-  transform: translateZ(70px) rotate(-24deg);
+  transform: translateZ(70px) rotate(56deg);
 }
 .camada-fnx {
   transform: translateZ(50px);
