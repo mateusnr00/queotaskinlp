@@ -11,9 +11,9 @@ import { registrarCliqueNoGrupo } from "@/lib/analytics";
 type Tamanho = "grande" | "medio" | "pequeno";
 
 const TAMANHO: Record<Tamanho, string> = {
-  grande: "h-14 px-7 text-base gap-2.5",
-  medio: "h-12 px-6 text-[0.95rem] gap-2",
-  pequeno: "h-10 px-4 text-sm gap-2",
+  grande: "h-16 px-9 text-2xl gap-3",
+  medio: "h-13 px-6 text-xl gap-2.5",
+  pequeno: "h-10 px-4 text-base gap-2",
 };
 
 export function BotaoDoGrupo({
@@ -34,7 +34,7 @@ export function BotaoDoGrupo({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => registrarCliqueNoGrupo(origem)}
-      className={`botao-de-whatsapp botao-do-grupo inline-flex items-center justify-center rounded-xl font-extrabold whitespace-nowrap select-none ${TAMANHO[tamanho]} ${largo ? "w-full" : ""} ${className}`}
+      className={`botao-de-whatsapp botao-do-grupo inline-flex items-center justify-center whitespace-nowrap select-none ${TAMANHO[tamanho]} ${largo ? "w-full" : ""} ${className}`}
     >
       <RiWhatsappFill aria-hidden className="size-[1.25em] shrink-0" />
       Entrar no grupo

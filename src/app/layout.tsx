@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Public_Sans } from "next/font/google";
+import { Barlow_Condensed, Public_Sans } from "next/font/google";
 import "./globals.css";
 
 import { URL_DO_SITE } from "@/lib/links";
@@ -13,16 +13,19 @@ const publicSans = Public_Sans({
   display: "swap",
 });
 
-const jetbrains = JetBrains_Mono({
+// Condensada pesada para títulos e rótulos de HUD: lembra a fonte da interface
+// do CS2 (Stratum2), que não é livre.
+const barlow = Barlow_Condensed({
   subsets: ["latin"],
-  weight: ["500"],
-  variable: "--font-jetbrains",
+  weight: ["600", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-hud",
   display: "swap",
 });
 
-const titulo = "QUÉOTA SKIN · Grupo de sorteios de skins de CS2";
+const titulo = "Lobby do FNX · Sorteios de skins de CS2 no WhatsApp";
 const descricao =
-  "Entre no grupo do WhatsApp e fique sabendo de cada sorteio de skin de CS2 antes de todo mundo. Grátis.";
+  "O grupo da comunidade do FNX no WhatsApp: cada sorteio de skin de CS2 chega lá primeiro. Grátis.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(URL_DO_SITE),
@@ -51,7 +54,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR" className={`${publicSans.variable} ${jetbrains.variable}`}>
+    <html lang="pt-BR" className={`${publicSans.variable} ${barlow.variable}`}>
       <body>
         {children}
         <ScriptsDeAnalytics />

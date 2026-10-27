@@ -1,30 +1,32 @@
 @import "tailwindcss";
 
-/* QUÉOTA SKIN, landing do grupo.
-   Mesma identidade da welcome/: preto, vermelho QUÉOTA e branco, cinzas frios
-   de apoio. Verde só no botão do WhatsApp, que é a cor que a pessoa reconhece
-   como "abre o WhatsApp". Página escura de propósito, a marca é escura. */
+/* LOBBY DO FNX
+   A página é a tela de "partida encontrada" do CS2: fundo escuro, vermelho da
+   QUÉOTA como cor da marca e o verde do botão de aceitar, que aqui é o mesmo
+   verde do WhatsApp. Títulos em condensada pesada, como a HUD do jogo.
+   Página escura de propósito: a marca e o jogo são escuros. */
 @theme {
-  --color-ink: #07090c;
-  --color-surface: #0c0f13;
-  --color-surface-2: #11151b;
-  --color-line: #1b2027;
-  --color-line-2: #262c34;
+  --color-ink: #070809;
+  --color-surface: #0e1013;
+  --color-surface-2: #15181d;
+  --color-line: #1d2127;
+  --color-line-2: #2a2f37;
 
   --color-red: #ff3b30;
   --color-red-bright: #ff5a4f;
+  --color-red-deep: #b3140c;
 
-  --color-paper: #f5f7fa;
-  --color-mute: #9aa2ad;
-  --color-mute-2: #6b7480;
+  --color-paper: #f4f5f7;
+  --color-mute: #a0a7b1;
+  --color-mute-2: #6e7782;
 
   --color-zap: #25d366;
-  --color-zap-ink: #062b16;
+  --color-zap-ink: #052a14;
 
   --font-sans:
     var(--font-public-sans), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Arial, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-hud: var(--font-hud), "Arial Narrow", ui-sans-serif, sans-serif;
 }
 
 :root {
@@ -42,65 +44,147 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(90% 55% at 78% -5%, rgba(255, 59, 48, 0.14), transparent 60%),
-    var(--color-ink);
+  background: var(--color-ink);
   color: var(--color-paper);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
+/* Ruído fixo bem leve por cima de tudo: tira a cara de tela lisa de template.
+   Fixo e sem eventos, então não custa nada na rolagem. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
 .wrap {
   width: 100%;
-  max-width: 1160px;
+  max-width: 1200px;
   margin-inline: auto;
   padding-inline: 18px;
 }
 @media (min-width: 768px) {
   .wrap {
-    padding-inline: 32px;
+    padding-inline: 36px;
   }
 }
 
-.display {
+/* Título de HUD: condensada, itálica, caixa alta, apertada. */
+.hud {
+  font-family: var(--font-hud);
   font-weight: 900;
   font-style: italic;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
   text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
-/* Botão do WhatsApp: verde da marca com texto escuro (contraste AA). */
+/* Rótulo pequeno de HUD, o "PARTIDA ENCONTRADA". */
+.rotulo-hud {
+  font-family: var(--font-hud);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* Contorno vazado para alternar com o texto cheio. */
+.vazado {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-paper);
+}
+@media (min-width: 768px) {
+  .vazado {
+    -webkit-text-stroke-width: 2px;
+  }
+}
+
+/* O botão de aceitar: verde do WhatsApp, texto escuro (contraste AA),
+   chanfro nos cantos como os botões da HUD do jogo. */
 .botao-do-grupo {
+  font-family: var(--font-hud);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   background: var(--color-zap);
   color: var(--color-zap-ink);
-  box-shadow: 0 14px 40px -18px rgba(37, 211, 102, 0.7);
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  filter: drop-shadow(0 12px 28px rgba(37, 211, 102, 0.35));
 }
 .botao-do-grupo:focus-visible {
   outline: 3px solid var(--color-paper);
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 /* Toque do botão, igual ao do app principal (.botao-de-whatsapp). */
 .botao-de-whatsapp {
   transition:
     transform 200ms ease,
-    opacity 200ms ease;
+    filter 200ms ease;
 }
 .botao-de-whatsapp:hover {
-  transform: scale(1.04);
+  transform: translateY(-2px) scale(1.03);
+  filter: drop-shadow(0 16px 36px rgba(37, 211, 102, 0.55));
 }
 .botao-de-whatsapp:active {
   transform: scale(0.97);
 }
 
-/* Palco da skin: brilho na cor da raridade, arte sempre inteira. */
-.palco {
+/* ---------- Card 3D do hero ----------
+   O card inclina seguindo o ponteiro (cartao-3d.tsx escreve --rx e --ry). A
+   faca e o FNX ficam em camadas mais "altas" (translateZ) e saem pela borda
+   do card: o fundo fica dentro, eles não. */
+.cena {
+  perspective: 1100px;
+}
+.cartao-3d {
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.camada-fundo {
+  transform: translateZ(0);
+}
+.camada-faca {
+  transform: translateZ(70px) rotate(-24deg);
+}
+.camada-fnx {
+  transform: translateZ(50px);
+}
+
+/* ---------- Cards da esteira ----------
+   A skin passa do topo do card. O trilho tem respiro em cima para ela caber
+   sem ser cortada pelo overflow horizontal. */
+.card-skin {
   background:
-    radial-gradient(60% 55% at 50% 55%, color-mix(in srgb, var(--raridade) 26%, transparent), transparent 70%),
-    var(--color-surface);
-  border: 1px solid color-mix(in srgb, var(--raridade) 35%, var(--color-line));
+    radial-gradient(90% 70% at 50% 100%, color-mix(in srgb, var(--raridade) 38%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--color-surface-2), var(--color-ink));
+  border: 1px solid color-mix(in srgb, var(--raridade) 45%, var(--color-line));
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-skin:hover {
+  transform: translateY(-6px);
+}
+.card-skin .skin-pop {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-skin:hover .skin-pop {
+  transform: rotate(-4deg) scale(1.08);
+}
+
+/* Faixa inclinada do "chega primeiro". */
+.faixa {
+  transform: skewY(-3deg);
+}
+.faixa > * {
+  transform: skewY(3deg);
 }
 
 /* Botão fixo do celular: entra de baixo, com a área segura do iPhone. */
@@ -120,11 +204,10 @@ body {
   pointer-events: auto;
 }
 
-/* Esteira de skins: a única animação contínua da página, mostra a variedade.
-   Roda sempre, de propósito fora do bloco de menos movimento (ver
+/* Esteira: roda sempre, de propósito fora do bloco de menos movimento (ver
    esteira-de-skins.tsx). Mouse ou dedo em cima pausa. */
 .esteira {
-  animation: esteira 40s linear infinite;
+  animation: esteira 44s linear infinite;
   will-change: transform;
 }
 .esteira:hover,
@@ -137,12 +220,23 @@ body {
   }
 }
 
-/* Entrada do hero e das seções. Conteúdo visível por padrão: a animação só
-   existe onde o navegador suporta e a pessoa não pediu menos movimento. */
+/* Entradas e flutuação. Conteúdo visível por padrão: só anima onde o
+   navegador suporta e a pessoa não pediu menos movimento. */
 @keyframes subir {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px);
+  }
+}
+@keyframes deslizar {
+  from {
+    opacity: 0;
+    transform: translateZ(50px) translateX(-40px);
+  }
+}
+@keyframes flutuar {
+  50% {
+    translate: 0 -10px;
   }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -150,22 +244,33 @@ body {
     animation: subir 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: var(--atraso, 0ms);
   }
+  .camada-fnx {
+    animation: deslizar 900ms 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .camada-faca {
+    animation: flutuar 5s ease-in-out infinite;
+  }
   @supports (animation-timeline: view()) {
     .revela {
       animation: subir linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 45%;
+      animation-range: entry 0% entry 40%;
     }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cartao-3d,
+  .card-skin,
+  .card-skin .skin-pop,
   .botao-fixo,
   .botao-de-whatsapp {
     transition: none;
   }
   .botao-de-whatsapp:hover,
-  .botao-de-whatsapp:active {
+  .botao-de-whatsapp:active,
+  .card-skin:hover,
+  .card-skin:hover .skin-pop {
     transform: none;
   }
 }
