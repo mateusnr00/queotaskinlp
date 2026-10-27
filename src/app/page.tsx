@@ -5,11 +5,12 @@ import { BotaoFixoMobile } from "@/components/botao-fixo-mobile";
 import { Cartao3D } from "@/components/cartao-3d";
 import { EsteiraDeSkins } from "@/components/esteira-de-skins";
 import { Marca } from "@/components/marca";
+import { PopupDeEntrada } from "@/components/popup-de-entrada";
 import { SKINS } from "@/lib/skins";
 
-// LOBBY DO FNX. A página é a tela de "partida encontrada" do CS2: quem joga
-// reconhece na hora, e o botão verde de aceitar é o botão do WhatsApp.
-// Uma porta só: sem menu, sem link para o site, nenhum outro caminho.
+// LOBBY DO FNX. Uma porta só: o grupo do WhatsApp da comunidade do FNX. Sem
+// menu, sem link para o site, nenhum outro caminho. O pop-up de entrada leva
+// ao mesmo grupo.
 
 const FACA = SKINS[0];
 
@@ -36,7 +37,7 @@ export default function Pagina() {
 
           <div className="wrap relative grid items-center gap-6 pt-6 pb-24 md:grid-cols-[1fr_1.1fr] md:gap-4 md:pt-10 md:pb-32">
             <div className="relative z-10">
-              <p className="rotulo-hud entra text-red">Partida encontrada</p>
+              <p className="rotulo-hud entra text-red">Comunidade do FNX</p>
               <h1
                 className="hud entra mt-4 text-[clamp(3.6rem,14vw,7.4rem)]"
                 style={{ "--atraso": "80ms" } as React.CSSProperties}
@@ -157,12 +158,12 @@ export default function Pagina() {
               aria-hidden
               className="pointer-events-none absolute inset-x-0 -bottom-1/2 mx-auto h-full w-[80%] rounded-full bg-[radial-gradient(closest-side,rgba(37,211,102,0.2),transparent)] blur-2xl"
             />
-            <p className="rotulo-hud relative text-zap">Sua partida está pronta</p>
+            <p className="rotulo-hud relative text-zap">Grátis no WhatsApp</p>
             <h2 className="hud relative mx-auto mt-4 max-w-3xl text-[clamp(3rem,10vw,6.4rem)]">
-              Aceita e cola no lobby.
+              Bora pro grupo do FNX.
             </h2>
             <p className="relative mx-auto mt-5 max-w-md text-mute">
-              O grupo é gratuito e você sai quando quiser.
+              Entra, silencia se quiser e sai quando quiser.
             </p>
             <div id="chamada-final" className="relative mt-10 flex justify-center">
               <BotaoDoGrupo origem="final" />
@@ -182,6 +183,7 @@ export default function Pagina() {
       </footer>
 
       <BotaoFixoMobile alvo="cta-hero" />
+      <PopupDeEntrada />
     </>
   );
 }
