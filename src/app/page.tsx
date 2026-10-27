@@ -171,10 +171,13 @@ export default function Pagina() {
         </section>
       </main>
 
-      <footer className="border-t border-line pb-28 md:pb-0">
-        <div className="wrap flex flex-col gap-2 py-8 text-xs text-mute-2 sm:flex-row sm:items-center sm:justify-between">
-          <Marca className="h-7" />
-          <p>Não afiliado à Valve. Counter-Strike é marca da Valve Corporation.</p>
+      {/* pb-24 no celular: espaço para o botão fixo não cobrir o rodapé. */}
+      <footer className="border-t border-line pb-24 md:pb-0">
+        <div className="wrap flex flex-col items-center gap-3 py-10 text-center md:flex-row md:justify-between md:py-8 md:text-left">
+          <Marca className="h-9 shrink-0 md:h-8" />
+          <p className="max-w-[30ch] text-[11px] leading-relaxed text-mute-2 md:max-w-none md:text-xs">
+            Não afiliado à Valve. Counter-Strike é marca da Valve Corporation.
+          </p>
         </div>
       </footer>
 
