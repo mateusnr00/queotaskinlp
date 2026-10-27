@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* QUÉOTA SKIN, landing do grupo.
+   Mesma identidade da welcome/: preto, vermelho QUÉOTA e branco, cinzas frios
+   de apoio. Verde só no botão do WhatsApp, que é a cor que a pessoa reconhece
+   como "abre o WhatsApp". Página escura de propósito, a marca é escura. */
+@theme {
+  --color-ink: #07090c;
+  --color-surface: #0c0f13;
+  --color-surface-2: #11151b;
+  --color-line: #1b2027;
+  --color-line-2: #262c34;
+
+  --color-red: #ff3b30;
+  --color-red-bright: #ff5a4f;
+
+  --color-paper: #f5f7fa;
+  --color-mute: #9aa2ad;
+  --color-mute-2: #6b7480;
+
+  --color-zap: #25d366;
+  --color-zap-ink: #062b16;
+
+  --font-sans:
+    var(--font-public-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Arial, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(90% 55% at 78% -5%, rgba(255, 59, 48, 0.14), transparent 60%),
+    var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: 18px;
+}
+@media (min-width: 768px) {
+  .wrap {
+    padding-inline: 32px;
+  }
+}
+
+.display {
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+/* Botão do WhatsApp: verde da marca com texto escuro (contraste AA). */
+.botao-do-grupo {
+  background: var(--color-zap);
+  color: var(--color-zap-ink);
+  box-shadow: 0 14px 40px -18px rgba(37, 211, 102, 0.7);
+}
+.botao-do-grupo:focus-visible {
+  outline: 3px solid var(--color-paper);
+  outline-offset: 3px;
+}
+
+/* Toque do botão, igual ao do app principal (.botao-de-whatsapp). */
+.botao-de-whatsapp {
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease;
+}
+.botao-de-whatsapp:hover {
+  transform: scale(1.04);
+}
+.botao-de-whatsapp:active {
+  transform: scale(0.97);
+}
+
+/* Palco da skin: brilho na cor da raridade, arte sempre inteira. */
+.palco {
+  background:
+    radial-gradient(60% 55% at 50% 55%, color-mix(in srgb, var(--raridade) 26%, transparent), transparent 70%),
+    var(--color-surface);
+  border: 1px solid color-mix(in srgb, var(--raridade) 35%, var(--color-line));
+}
+
+/* Botão fixo do celular: entra de baixo, com a área segura do iPhone. */
+.botao-fixo {
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--color-ink) 55%, transparent);
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 200ms ease;
+}
+.botao-fixo--on {
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Esteira de skins: a única animação contínua da página, mostra a variedade. */
+.esteira {
+  animation: esteira 48s linear infinite;
+}
+.esteira:hover {
+  animation-play-state: paused;
+}
+@keyframes esteira {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Entrada do hero e das seções. Conteúdo visível por padrão: a animação só
+   existe onde o navegador suporta e a pessoa não pediu menos movimento. */
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .entra {
+    animation: subir 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--atraso, 0ms);
+  }
+  @supports (animation-timeline: view()) {
+    .revela {
+      animation: subir linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .esteira {
+    animation: none;
+  }
+  .esteira-trilho {
+    overflow-x: auto;
+  }
+  .botao-fixo,
+  .botao-de-whatsapp {
+    transition: none;
+  }
+  .botao-de-whatsapp:hover,
+  .botao-de-whatsapp:active {
+    transform: none;
+  }
+}
